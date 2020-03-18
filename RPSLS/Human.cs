@@ -11,32 +11,42 @@ namespace RPSLS
         //member variables
         int input;
         //member methods
-        public int ChooseGesture()
+        public override void ChooseGesture()
         {
-            
+
             Console.WriteLine("Pick a gesture to play:");
             for (int i = 0; i < gestures.Count; i++)
             {
-                Console.WriteLine($"{i+1}. {gestures[i]}");
+                Console.WriteLine($"{i + 1}. {gestures[i]}");
             }
             string userInput = Console.ReadLine();
-            switch(userInput)
+            switch (userInput)
             {
                 case "1":
-                    return input;
+                    choice = gestures[0];
+                    break;
                 case "2":
-                    return input;
+                    choice = gestures[1];
+                    break;
                 case "3":
-                    return input;
+                    choice = gestures[2];
+                    break;
                 case "4":
-                    return input;
+                    choice = gestures[3];
+                    break;
                 case "5":
-                    return input;
+                    choice = gestures[4];
+                    break;
                 default:
-                    Console.WriteLine("Please make another selection");
-                    return ChooseGesture();
+                    Console.WriteLine("That is not a valid gesture. Please select again.");
+                    ChooseGesture();
+                    break;
             }
         }
-
+        public override void SetName()
+        {
+            Console.WriteLine("Please enter your name");
+            name = Console.ReadLine();
+        }
     }
 }
