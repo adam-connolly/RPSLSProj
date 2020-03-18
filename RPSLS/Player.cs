@@ -23,7 +23,7 @@ namespace RPSLS
             gestures.Add("Spock");
         }
 
-        public abstract void ChooseGesture();
+        public abstract string ChooseGesture();
 
         public abstract void SetName();
     }

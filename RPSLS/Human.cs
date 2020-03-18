@@ -8,10 +8,9 @@ namespace RPSLS
 {
     public class Human : Player
     {
-        //member variables
-        int input;
+        //member variables       
         //member methods
-        public override void ChooseGesture()
+        public override string ChooseGesture()
         {
 
             Console.WriteLine("Pick a gesture to play:");
@@ -24,23 +23,23 @@ namespace RPSLS
             {
                 case "1":
                     choice = gestures[0];
-                    break;
+                    return choice;
                 case "2":
                     choice = gestures[1];
-                    break;
+                    return choice;
                 case "3":
                     choice = gestures[2];
-                    break;
+                    return choice;
                 case "4":
                     choice = gestures[3];
-                    break;
+                    return choice;
                 case "5":
                     choice = gestures[4];
-                    break;
+                    return choice;
                 default:
                     Console.WriteLine("That is not a valid gesture. Please select again.");
-                    ChooseGesture();
-                    break;
+                    return ChooseGesture();
+                    
             }
         }
         public override void SetName()
