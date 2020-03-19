@@ -11,6 +11,7 @@ namespace RPSLS
         //member variables
         Player player1;
         Player player2;
+        int roundNumber = 1;
         //constructor
         public Game()
         {
@@ -25,15 +26,20 @@ namespace RPSLS
             player2.SetName();
             while(player1.score < 2 && player2.score < 2)
             {
+                
+                Console.WriteLine($"Round {roundNumber}\n");
+                Console.WriteLine($"{player1.name}: {player1.score}\n{player2.name}: {player2.score}\n");
                 CompareGestures(player1.ChooseGesture(), player2.ChooseGesture());
+                roundNumber++;
             }
+            Console.WriteLine($"{player1.name}: {player1.score}\n{player2.name}: {player2.score}\n");
             if (player1.score == 2)
             {
-                Console.WriteLine($"{player1.name} is the WINNER!");
+                Console.WriteLine($"{player1.name} WINS the game!");
             }
             else if (player2.score == 2)
             {
-                Console.WriteLine($"{player2.name} is the WINNER!");
+                Console.WriteLine($"{player2.name} WINS the game!");
             }
         }
 
@@ -49,8 +55,20 @@ namespace RPSLS
         public int SetNumberOfPlayers()
         {
             Console.WriteLine("1 player or 2 player?");
-            int numberOfPlayers = Convert.ToInt32(Console.ReadLine());
-            return numberOfPlayers;
+            string userInput = Console.ReadLine();
+            switch (userInput)
+            {
+                case "1":
+                    int numberOfPlayers = Convert.ToInt32(userInput);
+                    return numberOfPlayers;
+                case "2":
+                    numberOfPlayers = Convert.ToInt32(userInput);
+                    return numberOfPlayers;
+                default:
+                    Console.WriteLine("That is not a valid input");
+                    return SetNumberOfPlayers();
+            }
+            
         }
         public void CreatePlayers(int numberOfPlayers)
         {
@@ -64,46 +82,41 @@ namespace RPSLS
                 player1 = new Human();
                 player2 = new Human();
             }
-            else
-            {
-                player1 = new Computer();
-                player2 = new Computer();
-            }
         }
         public void CompareGestures(string player1Choice, string player2Choice)
         {
             if (player1Choice == player2Choice)
             {
-                Console.WriteLine("This round is a tie!");
+                Console.WriteLine("This round is a tie!\n");
             }
             else if (player1Choice == "Rock" && (player2Choice == "Scissors" || player2Choice == "Lizard"))
             {
-                Console.WriteLine($"{player1.name} wins this round!");
+                Console.WriteLine($"{player1.name} wins this round!\n");
                 player1.score++;
             }
             else if (player1Choice == "Paper" && (player2Choice == "Rock" || player2Choice == "Spock"))
             {
-                Console.WriteLine($"{player1.name} wins this round!");
+                Console.WriteLine($"{player1.name} wins this round!\n");
                 player1.score++;
             }
             else if (player1Choice == "Scissors" && (player2Choice == "Paper" || player2Choice == "Lizard"))
             {
-                Console.WriteLine($"{player1.name} wins this round!");
+                Console.WriteLine($"{player1.name} wins this round!\n");
                 player1.score++;
             }
             else if (player1Choice == "Lizard" && (player2Choice == "Spock" || player2Choice == "Paper"))
             {
-                Console.WriteLine($"{player1.name} wins this round!");
+                Console.WriteLine($"{player1.name} wins this round!\n");
                 player1.score++;
             }
             else if (player1Choice == "Spock" && (player2Choice == "Rock" || player2Choice == "Scissors"))
             {
-                Console.WriteLine($"{player1.name} wins this round!");
+                Console.WriteLine($"{player1.name} wins this round!\n");
                 player1.score++;
             }
             else
             {
-                Console.WriteLine($"{player2.name} wins this round!");
+                Console.WriteLine($"{player2.name} wins this round!\n");
                 player2.score++;
             }
         }
