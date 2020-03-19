@@ -8,12 +8,16 @@ namespace RPSLS
 {
     public class Computer : Player
     {
-        public override string ChooseGesture()
+        Random randomGesture;
+
+        public Computer(Random randomGesture)
         {
-            //choice = "Lizard";
-            Random randomGesture = new Random();
-            int randomChoice = randomGesture.Next(1, 6);
-            choice = Convert.ToString(gestures[randomChoice - 1]);
+            this.randomGesture = randomGesture;
+        }
+        public override string ChooseGesture()
+        {           
+            int randomChoice = randomGesture.Next(0, 5);
+            choice = Convert.ToString(gestures[randomChoice]);
             return choice;
         }
         public override void SetName()

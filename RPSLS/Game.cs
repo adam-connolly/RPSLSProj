@@ -11,11 +11,14 @@ namespace RPSLS
         //member variables
         Player player1;
         Player player2;
-        int roundNumber = 1;
+        int roundNumber;
+        Random randomGesture;
+
         //constructor
         public Game()
         {
-
+            randomGesture = new Random();
+            roundNumber = 1;
         }
         //member methods
         public void RunGame()
@@ -49,7 +52,16 @@ namespace RPSLS
         public void DisplayGameRules()
         {
             Console.WriteLine("Rock-Paper-Scissors-Lizard-Spock GAME RULES:\n");
-            Console.WriteLine("Rock crushes Scissors\nScissors cuts Paper\nPaper covers Rock\nRock crushes Lizard\nLizard poisons Spock\nSpock smashes Scissors\nScissors decapitates Lizard\nLizard eats Paper\nPaper disproves Spock\nSpock vaporizes Rock\n");
+            Console.WriteLine("Rock crushes Scissors\n" +
+                "Scissors cuts Paper\n" +
+                "Paper covers Rock\n" +
+                "Rock crushes Lizard\n" +
+                "Lizard poisons Spock\n" +
+                "Spock smashes Scissors\n" +
+                "Scissors decapitates Lizard\n" +
+                "Lizard eats Paper\n" +
+                "Paper disproves Spock\n" +
+                "Spock vaporizes Rock\n");
         }
         
         public int SetNumberOfPlayers()
@@ -65,8 +77,8 @@ namespace RPSLS
                     numberOfPlayers = Convert.ToInt32(userInput);
                     return numberOfPlayers;
                 default:
-                    Console.WriteLine("That is not a valid input");
-                    return SetNumberOfPlayers();
+                    numberOfPlayers = Convert.ToInt32(userInput);
+                    return numberOfPlayers;
             }
             
         }
@@ -75,12 +87,17 @@ namespace RPSLS
             if (numberOfPlayers == 1)
             {
                 player1 = new Human();
-                player2 = new Computer();
+                player2 = new Computer(randomGesture);
             }
             else if (numberOfPlayers == 2)
             {
                 player1 = new Human();
                 player2 = new Human();
+            }
+            else
+            {
+                player1 = new Computer(randomGesture);
+                player2 = new Computer(randomGesture);
             }
         }
         public void CompareGestures(string player1Choice, string player2Choice)

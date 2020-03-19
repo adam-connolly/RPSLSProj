@@ -20,7 +20,7 @@ namespace RPSLS
             gestures.Add("Paper");
             gestures.Add("Scissors");
             gestures.Add("Lizard");
-            gestures.Add("Spock");
+            gestures.Add("Spock");            
         }
 
         public abstract string ChooseGesture();
